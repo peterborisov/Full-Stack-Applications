@@ -2,13 +2,14 @@
 
 import React, { useState, useEffect } from "react";
 import ProductService from "../ProductService";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
   const [products, setProducts] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
     ProductService.getProducts().then((res) => {
-      console.log(111, res);
       setProducts(res.data);
     });
   }, []);
@@ -17,7 +18,15 @@ const Page = () => {
     <>
       <h2 className="text-center"> Product List </h2>
       <div className="row">
-        <button className="btn btn-primary"> Add Product </button>
+        <button
+          className="btn btn-primary"
+          onClick={() => {
+            router.push(`/add-product`);
+          }}
+        >
+          {" "}
+          Add Product{" "}
+        </button>
         <div className="row">
           <table className="table table-striped table-bordered">
             <thead>
@@ -35,19 +44,29 @@ const Page = () => {
                   <td> {product.description} </td>
                   <td> {product.price} </td>
                   <td>
-                    <button className="btn btn-info"> Update </button>
+                    <button
+                      className="btn btn-info"
+                      onClick={() => {
+                        router.push(`/update-product/${product.id}`);
+                      }}
+                    >
+                      Update
+                    </button>
                     <button
                       className="btn btn-danger"
                       onClick={() =>
-                        ProductService.deleteProduct(product.id).then(() =>
-                          setProducts(
-                            products.filter((p) => p.id !== product.id)
-                          )
-                        )
+                        setProducts(products.filter((p) => p.id !== product.id))
                       }
                     >
-                      {" "}
-                      Delete{" "}
+                      Delete
+                    </button>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => {
+                        router.push(`/products/${product.id}`);
+                      }}
+                    >
+                      Details
                     </button>
                   </td>
                 </tr>

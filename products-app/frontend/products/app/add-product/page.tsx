@@ -2,19 +2,19 @@
 
 import React, { useState } from "react";
 import ProductService from "../ProductService";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const saveProduct = (e) => {
     e.preventDefault();
     const product = { name, description, price };
     ProductService.createProduct(product).then(() => {
-      navigate("/products");
+      router.push("/products");
     });
   };
 

@@ -11,16 +11,17 @@ class ProductService {
         return axios.post(PRODUCT_API_BASE_URL, product);
     }
 
-    getProductById(productId) {
-        return axios.get(`${PRODUCT_API_BASE_URL}/${productId}`);
+    getProductById(id) {
+        return axios.get(`${PRODUCT_API_BASE_URL}/${id}`);
     }
 
-    updateProduct(product, productId) {
-        return axios.put(`${PRODUCT_API_BASE_URL}/${productId}`, product);
+    updateProduct(product, id) {
+        console.log(product, id)
+        return axios.put(`${PRODUCT_API_BASE_URL}/${id}`, product);
     }
 
-    deleteProduct(productId) {
-        return axios.delete(`${PRODUCT_API_BASE_URL}/${productId}`);
+    deleteProduct(id) {
+        return axios.delete(`${PRODUCT_API_BASE_URL}/${id}`);
     }
 }
 

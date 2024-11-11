@@ -2,29 +2,29 @@
 
 import React, { useState, useEffect } from "react";
 import ProductService from "../../ProductService";
-import { useNavigate, useParams } from "react-router-dom";
 
-const Page = () => {
-  const { id } = useParams();
+import { useRouter } from "next/navigation";
+
+const Page = ({ params }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const navigate = useNavigate();
+  const router = useRouter();
 
   useEffect(() => {
-    ProductService.getProductById(id).then((res) => {
+    ProductService.getProductById(params.id).then((res) => {
       const product = res.data;
       setName(product.name);
       setDescription(product.description);
       setPrice(product.price);
     });
-  }, [id]);
+  }, [params.id]);
 
   const updateProduct = (e) => {
     e.preventDefault();
     const product = { name, description, price };
-    ProductService.updateProduct(product, id).then(() => {
-      navigate("/products");
+    ProductService.updateProduct(product, params.id).then(() => {
+      router.push("/products");
     });
   };
 
