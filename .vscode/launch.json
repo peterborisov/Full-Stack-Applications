@@ -1,0 +1,21 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "ProductsAppApplication",
+      "request": "launch",
+      "mainClass": "com.example.products.ProductsAppApplication",
+      "projectName": "products-app"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-StudentsAppApplication<students-app>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.students.students_app.StudentsAppApplication",
+      "projectName": "students-app",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
