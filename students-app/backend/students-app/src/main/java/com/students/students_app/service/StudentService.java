@@ -30,8 +30,8 @@ public class StudentService implements IStudentService {
     @Override
     public Student updateStudent(Student student, Long id) {
         return studentRepository.findById(id).map(st -> {
-            st.setFirstName(student.getFirstName());
-            st.setLastName(student.getLastName());
+            st.setFirst_name(student.getFirst_name());
+            st.setLast_name(student.getLast_name());
             st.setEmail(student.getEmail());
             st.setDepartment(student.getDepartment());
             return studentRepository.save(st);

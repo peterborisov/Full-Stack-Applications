@@ -7,19 +7,20 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin("http://localhost:3000")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/students")
 @RequiredArgsConstructor
 public class StudentController {
 
     private final IStudentService studentService;
 
-    @GetMapping("/students")
+    @GetMapping
     public List<Student> getStudents() {
         return studentService.getStudents();
     }
 
-    @GetMapping("/students/{id}")
+    @GetMapping("/{id}")
     public Student getStudentById(@PathVariable Long id) {
         return studentService.getStudentById(id);
     }
